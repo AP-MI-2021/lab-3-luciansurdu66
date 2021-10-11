@@ -104,8 +104,8 @@ def main():
     lst = []
     while True:
         print('1. Citire date.')
-        print('2. Determinare cea mai lungă subsecvență cu -')
-        print('3. Determinare cea mai lungă subsecvență cu -')
+        print('2. Determinare cea mai lungă subsecvență cu palindroame')
+        print('3. Determinare cea mai lungă subsecvență cu suma numerelor mai mică ca o valoare citită')
         print('x. Ieșire')
         optiune = input('Dați opțiunea: ')
         if optiune == '1':
