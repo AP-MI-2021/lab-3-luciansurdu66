@@ -89,9 +89,9 @@ def get_longest_average_below(lst: list[int], average: float) -> list[int]:
 
 def prime_digits(x: int) -> bool:
     """
-
-    :param x:
-    :return:
+    Verifica daca numarul are toate cifrele prime
+    :param x: intreg
+    :return: Valoare de adevar in functie de caz
     """
     while x:
         last = x % 10
@@ -103,9 +103,9 @@ def prime_digits(x: int) -> bool:
 
 def all_prime_digits(lst: list[int]) -> bool:
     """
-
-    :param lst:
-    :return:
+    Verifica daca toate numerele dintr-o subsecventa au toate cifrele prime
+    :param lst: lista de intregi
+    :return: Valoare de adevar in functie de caz
     """
     for i in lst:
         if not prime_digits(i):
@@ -115,9 +115,9 @@ def all_prime_digits(lst: list[int]) -> bool:
 
 def get_longest_prime_digits(lst: list[int]) -> list[int]:
     """
-
-    :param lst:
-    :return:
+    Determina cea mai lunga subsecventa de numere cu toate cifrele prime
+    :param lst: lista de intregi
+    :return: cea mai lunga subsecventa
     """
     subarray = []
     for i in range(len(lst)):
