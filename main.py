@@ -1,4 +1,4 @@
-def read_list():
+def read_list() -> list[int]:
     lst = []
     n = int(input("Dati nr. de elemente: "))
     for i in range(n):
@@ -9,7 +9,7 @@ def read_list():
 "Proprietatea 5"
 
 
-def is_palindrome(x):
+def is_palindrome(x: int) -> bool:
     """
     Verifică dacă un număr este palindrom
     :param x: număr întreg
@@ -25,7 +25,7 @@ def is_palindrome(x):
     return False
 
 
-def all_palindromes(lst):
+def all_palindromes(lst: list[int]) -> bool:
     """
     Verifică dacă toate numerele dintr-o listă sunt palindroame
     :param lst: listă de numere întregi
@@ -54,7 +54,7 @@ def get_longest_all_palindromes(lst: list[int]) -> list[int]:
 "Proprietatea 17"
 
 
-def is_below_average(lst: list[int], average: float):
+def is_below_average(lst: list[int], average: float) -> bool:
     """
     Calculează și verifică dacă media numerelor nu depășește o valoare citită
     :param lst: Listă de numere întregi
@@ -84,6 +84,49 @@ def get_longest_average_below(lst: list[int], average: float) -> list[int]:
     return subarray
 
 
+"Proprietatea 13"
+
+
+def prime_digits(x: int) -> bool:
+    """
+
+    :param x:
+    :return:
+    """
+    while x:
+        last = x % 10
+        if last != 2 and last != 3 and last != 5 and last != 7:
+            return False
+        x //= 10
+    return True
+
+
+def all_prime_digits(lst: list[int]) -> bool:
+    """
+
+    :param lst:
+    :return:
+    """
+    for i in lst:
+        if not prime_digits(i):
+            return False
+    return True
+
+
+def get_longest_prime_digits(lst: list[int]) -> list[int]:
+    """
+
+    :param lst:
+    :return:
+    """
+    subarray = []
+    for i in range(len(lst)):
+        for j in range(i, len(lst)):
+            if all_prime_digits(lst[i: j + 1]) and len(lst[i: j + 1]) > len(subarray):
+                subarray = lst[i: j + 1]
+    return subarray
+
+
 "Teste"
 
 
@@ -98,14 +141,22 @@ def test_get_longest_average_below():
     assert get_longest_average_below([1, 1, 1, 1, 1], 1) == []
 
 
+def test_get_longest_prime_digits():
+    assert get_longest_prime_digits([35, 53, 44]) == [35, 53]
+    assert get_longest_prime_digits([1, 1, 1]) == []
+    assert get_longest_prime_digits([55, 44, 22, 8, 235, 7523, 777]) == [235, 7523, 777]
+
+
 def main():
     test_get_longest_all_palindromes()
     test_get_longest_average_below()
+    test_get_longest_prime_digits()
     lst = []
     while True:
         print('1. Citire date.')
         print('2. Determinare cea mai lungă subsecvență cu palindroame')
         print('3. Determinare cea mai lungă subsecvență cu suma numerelor mai mică ca o valoare citită')
+        print('4. Determinare cea mai lungă subsecvență cu toate numerele formate din cifre prime')
         print('x. Ieșire')
         optiune = input('Dați opțiunea: ')
         if optiune == '1':
@@ -115,6 +166,8 @@ def main():
         elif optiune == '3':
             average = float(input("Valoarea dată pentru medie"))
             print(get_longest_average_below(lst, average))
+        elif optiune == '4':
+            print(get_longest_prime_digits(lst))
         elif optiune == 'x':
             break
         else:
